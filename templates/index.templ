@@ -1,0 +1,11 @@
+package templates
+
+import "github.com/robin-thoene/toxic-chronos/models"
+
+templ Index(c []models.Countdown) {
+	<div>
+		for _, item := range c {
+			@Countdown(item)
+		}
+	</div>
+}

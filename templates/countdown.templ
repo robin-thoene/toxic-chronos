@@ -1,0 +1,10 @@
+package templates
+
+import "github.com/robin-thoene/toxic-chronos/models"
+
+templ Countdown(c models.Countdown) {
+	<div>
+		<div>{ c.Label }</div>
+		<div>{ c.DueDate.Format("2006-01-02 15:04:05") }</div>
+	</div>
+}
