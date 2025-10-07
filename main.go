@@ -20,7 +20,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	mux := http.NewServeMux()
+	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	index := templates.Index(countdowns)
-	http.Handle("/", templ.Handler(index))
-	http.ListenAndServe(":8080", nil)
+	mux.Handle("/", templ.Handler(index))
+	http.ListenAndServe(":8080", mux)
 }

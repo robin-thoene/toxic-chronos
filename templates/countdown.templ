@@ -1,10 +1,17 @@
 package templates
 
-import "github.com/robin-thoene/toxic-chronos/models"
+import (
+	"fmt"
+	"github.com/robin-thoene/toxic-chronos/models"
+)
 
 templ Countdown(c models.Countdown) {
 	<div>
 		<div>{ c.Label }</div>
-		<div>{ c.DueDate.Format("2006-01-02 15:04:05") }</div>
+		<div id={ fmt.Sprintf("countdown-%s", c.Label) }>loading ...</div>
 	</div>
+	<script type="module">
+		import { startCountdown } from "/static/live_countdown_display.js";
+		startCountdown({{ fmt.Sprintf("countdown-%s", c.Label) }}, {{ c.DueDate.Format("2006-01-02 15:04:05") }});
+	</script>
 }
