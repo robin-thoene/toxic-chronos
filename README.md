@@ -2,7 +2,7 @@
 
 ## Summary
 
-TODO
+Simple countdown website to display live countdown towards multiple events in the future.
 
 ## Local development
 
