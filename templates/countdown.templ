@@ -6,9 +6,9 @@ import (
 )
 
 templ Countdown(c models.Countdown) {
-	<div>
-		<div>{ c.Label }</div>
-		<div id={ fmt.Sprintf("countdown-%s", c.Label) }>loading ...</div>
+	<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+		<h2>{ c.Label }</h2>
+		<p id={ fmt.Sprintf("countdown-%s", c.Label) }>loading ...</p>
 	</div>
 	<script type="module">
 		import { startCountdown } from "/static/live_countdown_display.js";
