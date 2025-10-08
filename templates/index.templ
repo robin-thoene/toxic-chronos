@@ -1,0 +1,11 @@
+package templates
+
+import "toxic-chronos/models"
+
+templ Index(c []models.Countdown) {
+	<div style="display: flex; flex-direction: column; align-items: center;">
+		for _, item := range c {
+			@Countdown(item)
+		}
+	</div>
+}

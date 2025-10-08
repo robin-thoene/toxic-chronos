@@ -1,0 +1,37 @@
+name: CI_CD
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  ci_cd:
+    name: Build and deploy container
+    runs-on: ubuntu-latest
+    env:
+      REGISTRY_USER: ${{ secrets.REGISTRY_USER }}
+      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+      REGISTRY: ${{ secrets.REGISTRY }}
+      IMAGE_TAG: ${{ secrets.REGISTRY }}/toxic-chronos:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build container image
+        run: podman build -t ${{ env.IMAGE_TAG }} .
+      - name: Registry login
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        uses: redhat-actions/podman-login@v1
+        with:
+          username: ${{ env.REGISTRY_USER }}
+          password: ${{ env.REGISTRY_PASSWORD }}
+          registry: ${{ env.REGISTRY }}
+      - name: Push container image
+        id: push_image
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        run: podman push ${{ env.IMAGE_TAG }}

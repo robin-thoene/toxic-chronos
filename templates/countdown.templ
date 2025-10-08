@@ -1,0 +1,17 @@
+package templates
+
+import (
+	"fmt"
+	"toxic-chronos/models"
+)
+
+templ Countdown(c models.Countdown) {
+	<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+		<h2>{ c.Label }</h2>
+		<p id={ fmt.Sprintf("countdown-%s", c.Label) }>loading ...</p>
+	</div>
+	<script type="module">
+		import { startCountdown } from "/static/live_countdown_display.js";
+		startCountdown({{ fmt.Sprintf("countdown-%s", c.Label) }}, {{ c.DueDate.Format("2006-01-02 15:04:05") }});
+	</script>
+}
