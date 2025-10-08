@@ -1,4 +1,4 @@
-module github.com/robin-thoene/toxic-chronos
+module toxic-chronos
 
 go 1.25.1
 

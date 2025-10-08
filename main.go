@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"github.com/a-h/templ"
 	"github.com/joho/godotenv"
-	"github.com/robin-thoene/toxic-chronos/models"
-	"github.com/robin-thoene/toxic-chronos/templates"
 	"net/http"
 	"os"
+	"toxic-chronos/models"
+	"toxic-chronos/templates"
 )
 
 func main() {
