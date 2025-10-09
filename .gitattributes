@@ -1,1 +1,2 @@
 static/live_countdown_display.js linguist-vendored
+*.templ linguist-language=Go
