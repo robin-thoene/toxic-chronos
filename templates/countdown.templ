@@ -2,6 +2,7 @@ package templates
 
 import (
 	"fmt"
+	"time"
 	"toxic-chronos/models"
 )
 
@@ -12,6 +13,6 @@ templ Countdown(c models.Countdown) {
 	</div>
 	<script type="module">
 		import { startCountdown } from "/static/live_countdown_display.js";
-		startCountdown({{ fmt.Sprintf("countdown-%s", c.Label) }}, {{ c.DueDate.Format("2006-01-02 15:04:05") }});
+		startCountdown({{ fmt.Sprintf("countdown-%s", c.Label) }}, {{ c.DueDate.Format(time.RFC3339) }});
 	</script>
 }
