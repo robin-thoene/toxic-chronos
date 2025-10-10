@@ -8,8 +8,8 @@ import (
 
 templ Countdown(c models.Countdown) {
 	<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-		<h2 style="font-size: 40px;">{ c.Label }</h2>
-		<p style="font-size: 36px;" id={ fmt.Sprintf("countdown-%s", c.Label) }>loading ...</p>
+		<h2 style="font-size: 80px;">{ c.Label }</h2>
+		<p style="font-size: 100px;" id={ fmt.Sprintf("countdown-%s", c.Label) }>loading ...</p>
 	</div>
 	<script type="module">
 		import { startCountdown } from "/static/live_countdown_display.js";
